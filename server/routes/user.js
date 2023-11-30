@@ -24,7 +24,10 @@ router.post("/register",
             const errors = validationResult(req);
             // console.log(errors)
             if (!errors.isEmpty()) {
-              return res.status(400).json({ errors: errors.array() });
+              return res.status(400).json({ 
+                message : "please check your mail or password",
+                // errors: errors.array()
+             });
             }
             try {
                 const { email, password } = req.body;
@@ -41,7 +44,7 @@ router.post("/register",
                     const user= await User.findOne({email})
                         if(user){
                             return res.status(400).json({
-                                meassage:"user is already registerd"
+                                message:"user is already registerd"
                             })
                         }
                    // Create a new user instance and saving in the DB.
@@ -49,7 +52,8 @@ router.post("/register",
                         email,password : hash
                    })
                    res.status(201).json({
-                    message : "User Registration is successful",
+                    status : "success",
+                    message : "Registration successful & please login",
                     newUser
                    })
                 });
@@ -64,41 +68,43 @@ router.post("/login",[body("email"),body("password")],
     try{
         const errors =validationResult(req);
             if(!errors.isEmpty()){
-                return res.status(400).json({ errors : errors.array()})
+                return res.status(400).json({ 
+                    message: "please check your details",
+                    errors : errors.array()})
             }
         const {email,password}=req.body;
-        const user = await User.findOne({password});
+        const user = await User.findOne({email});
+        // console.log(user)
         if(!user){
             return res.status(400).json({
-                meassage:"user is not registerd"
+                message:"user is not registerd"
             })
            
         }
-
-        bcrypt.compare(password ,user.password, async (err,result)=>{
-            if(err){
-               return res.status(400).json({
-                    message: err.message
-                }) 
-               
-            }
+        const result = await bcrypt.compare(password,user.password)
+        // console.log(result)
             if(result){
-                const token = jwt.sign({
+                const token = await jwt.sign({
                     exp : Math.floor(Date.now()/1000)+(600*600),
                     data : user._id
                 },secretKey)
                 res.status(200).json({
+                    status:"success",
                     message :  "login successful",
-                    token
+                    token : token,
+                    user : user
+                })
+            }
+            else{
+                return res.status(400).json({ 
+                    message: "please check your password"
                 })
             }
          
-        })
-       
     }
     catch(err){
         res.status(400).json({
-         status : "login-failed",
+            status : "login-failed",
             message : err.message
         })
     }
