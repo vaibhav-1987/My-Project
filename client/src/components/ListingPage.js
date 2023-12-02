@@ -1,12 +1,37 @@
-// header
-// sideBar
-// body -- changes according to path
+
 import Header from "./Header";
 import Body from "./Body";
 import SideBar from "./SideBar";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import AddNewProperty from "./AddNewProperty";
 import PropertyList from "./PropertyList";
+
+
+
+const ListingPage = ()=>{
+    return(
+        <div className=" bg-fixed">
+            <Header/>
+            <SideBar/>
+            <Outlet/>
+        </div>
+    )
+}
+export default ListingPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const propertyRouter = createBrowserRouter(
 //     [{
@@ -22,14 +47,3 @@ import PropertyList from "./PropertyList";
        
 //     }]
 // )
-
-const ListingPage = ()=>{
-    return(
-        <div>
-            <Header/>
-            <SideBar/>
-            <Outlet/>
-        </div>
-    )
-}
-export default ListingPage;

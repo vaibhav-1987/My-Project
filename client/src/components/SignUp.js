@@ -67,13 +67,13 @@ const SignUp = () => {
                 const res = await fetch("http://localhost:5050/api/v1/users/login", requestOptions)
                 const data = await res.json();
                 setErrorMessage(data)
-                console.log(data)
+                // console.log(data)
                 if (data.message.includes("success")) {
                     emailRef.current.value = '';
                     passwordRef.current.value = '';
                     navigate("/")
                     setUserName("gowri")
-                    console.log(loggedInUser)
+                    // console.log(loggedInUser)
                 }
                 
             } catch (err) {
@@ -84,7 +84,7 @@ const SignUp = () => {
     }
     return (
         <div>
-            <div className="absolute w-screen h-full bg-green-100"></div>
+            <div className="absolute w-screen h-full  bg-teal-100 bg-opacity-80"></div>
             <div className="flex justify-center">
                 <form
                     className="absolute flex flex-col mt-[130px] 

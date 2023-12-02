@@ -14,7 +14,7 @@ const App = () => {
   const [userName , setUserName]= useState()
   return (
     <UserContext.Provider value={{loggedInUser: userName , setUserName}}>
-    <div className='app'>
+    <div className=' bg-gray-100 bg-opacity-90 h-screen'>
       <Router>
         <Routes>
             <Route path='/' exact
