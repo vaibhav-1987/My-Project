@@ -4,10 +4,9 @@ import UserContext from "./UserContext";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-    // const [fromData, setFormData] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null)
     const [isSigninForm, setSigninForm] = useState(true)
-    const {loggedInUser ,setUserName} = useContext(UserContext)
+    const {loggedInUser ,setLoggedInUser} = useContext(UserContext)
     const navigate = useNavigate();
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
@@ -71,8 +70,15 @@ const SignUp = () => {
                 if (data.message.includes("success")) {
                     emailRef.current.value = '';
                     passwordRef.current.value = '';
+                    
+                    const userData = {
+                        email : data?.user?.email,
+                        id : data?.user?._id,
+                        token : data?.token
+                    }
+                    console.log(userData)
+                    setLoggedInUser(userData)
                     navigate("/")
-                    setUserName("gowri")
                     // console.log(loggedInUser)
                 }
                 

@@ -10,11 +10,15 @@ import { useEffect, useState } from 'react';
 
 
 
+
 const App = () => {
-  const [userName , setUserName]= useState()
+  const [loggedInUser , setLoggedInUser]= useState(null)
+  const signOut = ()=>{
+    setLoggedInUser(null)
+  }
   return (
-    <UserContext.Provider value={{loggedInUser: userName , setUserName}}>
-    <div className=' bg-gray-100 bg-opacity-90 h-screen'>
+    <UserContext.Provider value={{loggedInUser,setLoggedInUser , signOut}}>
+    <div className=' bg-gray-100 -z-20 bg-opacity-90 h-screen'>
       <Router>
         <Routes>
             <Route path='/' exact
