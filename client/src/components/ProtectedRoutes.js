@@ -5,11 +5,9 @@ import UserContext from "./UserContext"
 
 const ProtectedRoutes = () => {
     const {loggedInUser} = useContext(UserContext)
-    console.log(loggedInUser)
+    // console.log(loggedInUser)
     // let auth = {"token" : false}
-  return (
-    (loggedInUser==="gowri") ?<ListingPage/> : <Navigate to="/login"/>
-  )
+    return loggedInUser ? <ListingPage /> : <Navigate to="/login" />;
 }
 
 export default ProtectedRoutes

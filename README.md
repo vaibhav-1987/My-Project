@@ -23,7 +23,8 @@ added dev set up needed for project
  - used react-router for navigation and user can access Listing-page after login
  - used outlet and children routes , ReactContext for protected routes
  - listing page and property listing page was developed usng dummy data..
-
+ - developed add new property pages with multi-step form using tailwind css..
+ - added sign-out feature using ReactContext ..
 
 # project outline 
  

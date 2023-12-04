@@ -10,7 +10,7 @@ import PropertyList from "./PropertyList";
 
 const ListingPage = ()=>{
     return(
-        <div className=" bg-fixed">
+        <div className="">
             <Header/>
             <SideBar/>
             <Outlet/>
