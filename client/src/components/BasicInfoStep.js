@@ -168,7 +168,7 @@ const BasicInfoStep = ({handleBasicInfo}) => {
             </label>
             <select
               className="mt-1 mb-4 pl-4 py-3 pr-56 text-gray-500
-      border border-solid border-gray-400 rounded-lg"
+              border border-solid border-gray-400 rounded-lg"
               name="bankLoan"
               value={basicInfo.bankLoan}
               onChange={handleInputChange}
