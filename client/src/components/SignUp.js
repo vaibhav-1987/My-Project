@@ -60,7 +60,7 @@ const SignUp = () => {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password }),
-                    redirect: 'follow'
+                    
                 };
 
                 const res = await fetch("http://localhost:5050/api/v1/users/login", requestOptions)

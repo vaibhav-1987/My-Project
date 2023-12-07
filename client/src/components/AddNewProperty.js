@@ -1,9 +1,9 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import BasicInfoStep from "./BasicInfoStep"
 import PropertyDetailsStep2 from "./PropertyDetailsStep2"
 import GeneralInfoStep3 from "./GeneralInfoStep3"
 import LocationInfoStep4 from "./LocationInfoStep4"
-
+import UserContext from "./UserContext"
 const AddNewProperty = () => {
   const [formData, setFormData] = useState({
     basicInfo: {},
@@ -12,7 +12,7 @@ const AddNewProperty = () => {
     locationInfo: {}
   })
   const [step, setStep] = useState(1)
-
+  const { loggedInUser } = useContext(UserContext)
 
   // Function to update the formData state with Basic Info data
   const handleBasicInfoData = (data) => {
@@ -49,27 +49,24 @@ const AddNewProperty = () => {
   const handleFormSubmit = async () => {
     try {
       console.log(formData)
-      // // Make a POST request to your backend endpoint with the form data
-      // const response = await fetch('your-backend-url', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
-
-      // if (response.ok) {
-      //   const result = await response.json();
-      //   // Handle successful response from the backend
-      //   alert("Property added successfully");
-      //   // You might want to reset the form or do other actions here
-      // } else {
-      //   // Handle errors if the request fails
-      //   throw new Error('Failed to add property');
-      // }
+      // Make a POST request to your backend endpoint with the form data
+      const response = await fetch(
+        "http://localhost:5050/api/v1/property/add",
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'authorization': `bearer ${loggedInUser.token}`
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+        const result = await response.json();
+        console.log(result)
+   
     } catch (error) {
-      // console.error('Error:', error);
-      // // Handle error scenarios (e.g., show an error message)
+      console.error('Error:', error);
+      
     }
   };
   return (
@@ -139,22 +136,22 @@ const AddNewProperty = () => {
           onSubmit={
             (e) => (e.preventDefault())
           }>
-          {step === 1 &&( 
-            <BasicInfoStep handleBasicInfo = {handleBasicInfoData}/>
+          {step === 1 && (
+            <BasicInfoStep handleBasicInfo={handleBasicInfoData} />
           )}
           {step === 2 && (
-            <PropertyDetailsStep2 handlePropertyDetails={handlePropertyDetailsData}/>
+            <PropertyDetailsStep2 handlePropertyDetails={handlePropertyDetailsData} />
           )}
-          {step === 3 &&( 
-            <GeneralInfoStep3 handleGeneralInfo={handleGeneralInfoData}/>
+          {step === 3 && (
+            <GeneralInfoStep3 handleGeneralInfo={handleGeneralInfoData} />
           )}
           {step === 4 && (
-            <LocationInfoStep4  handleLocationInfo={handleLocationInfoData}/>
+            <LocationInfoStep4 handleLocationInfo={handleLocationInfoData} />
           )}
 
           <div className="relative flex justify-center">
             <button
-              className=" w-[200px] h-[60px] text-xl mx-4 my-2 px-10 py-4 bg-blue-300 rounded-full"
+              className=" w-[200px] h-[60px] text-white  mx-4 my-2 px-10 py-4 bg-blue-400 rounded-full"
               onClick={() => {
                 setStep(step === 1 ? 1 : step - 1);
               }}
@@ -207,3 +204,10 @@ export default AddNewProperty
               {step == 4 ? "add property" : "Save & Continue"}
             </button>
           </div> */}
+             //   // Handle successful response from the backend
+      //   alert("Property added successfully");
+      //   // You might want to reset the form or do other actions here
+      // } else {
+      //   // Handle errors if the request fails
+      //   throw new Error('Failed to add property');
+      // }

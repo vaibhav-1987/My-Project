@@ -1,12 +1,12 @@
   
 const PropertyCard = ({obj})=>{
     // console.log(obj)
-    const {PPID ,image,property,contact,area,views,status,daysLeft,action} = obj
+    const {ppdId ,image,property,contact,area,views,status,daysLeft,action} = obj
     // console.log(PPID)
     return(
         <div  className=" grid grid-cols-9 gap-4  my-4  text-center 
          bg-white shadow-lg rounded-lg">
-            <p className="mx-4 p-4">{PPID}</p>
+            <p className="mx-4 p-4">{ppdId}</p>
             <img
              className="p-4"
              alt="image"/>

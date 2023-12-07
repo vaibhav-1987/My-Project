@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config()
 const connectDB = require ("./config/connect_db")
 const userRoutes = require("./routes/user")
 const propertyRoutes = require("./routes/property")
-// const middleware = require("../middleware/middleware");
+const middleware = require("./middleware/middleware")
 const PORT = process.env.PORT || 5000
 
 app.use(express.json())
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.use("/api/v1/users",userRoutes);
-app.use("/api/v1/property",propertyRoutes)
+app.use("/api/v1/property",middleware ,propertyRoutes)
 
 const startServer = async () => {
     try {

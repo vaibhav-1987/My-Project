@@ -10,7 +10,7 @@ const basicInfoSchema= new mongoose.Schema({
         required:true
     },
     propertyAge : {
-        type : Number,
+        type : String,
         required:true
     },
     propertyDescription : {
@@ -18,10 +18,10 @@ const basicInfoSchema= new mongoose.Schema({
         required:true
     },
     negotiable : {
-        type : Boolean,
+        type : String,
         required:true
     },
-    ownerShip : {
+    ownership : {
         type : String,
         required:true
     },
@@ -50,45 +50,45 @@ const propertyDetailSchema = new mongoose.Schema({
   },
   areaUnit: {
     type: String,
-    enum: ['SqFt', 'SqYd', 'SqMeter', 'Acres', 'Hectares'],
-    default: 'SqFt'
+    required : true
+    // enum: ['SqFt', 'SqYd', 'SqMeter', 'Acres', 'Hectares'],
+    // default: 'SqFt'
   },
   numberOfBHK: {
-    type: Number,
+    type: String,
     required: true
   },
   numberOfFloors: {
-    type: Number,
+    type: String,
     required: true
   },
   attachedBathroom: {
-    type: Boolean,
-    default: false
+    type: String,
+    required : true
   },
   westernToilet: {
-    type: Boolean,
-    default: false
+    type: String,
+    required : true
   },
   furnished: {
-    type: Boolean,
-    default: false
+    type: String,
+    required : true
   },
   carParking: {
-    type: Boolean,
-    default: false
+    type: String,
+    required : true
   },
   lift: {
-    type: Boolean,
-    default: false
+    type: String,
+    required : true
   },
   electricity: {
-    type: Boolean,
-    default: false
+    type: String,
+    required : true
   },
   facing: {
     type: String,
-    enum: ['North', 'South', 'East', 'West', 'North-East', 'South-East', 'North-West', 'South-West'],
-    default: 'North'
+    required : true
   }
 });
 
@@ -99,7 +99,7 @@ const generalInfoSchema = new mongoose.Schema({
     required: true
   },
   mobile: {
-    type: String,
+    type: Number,
     required: true
   },
   postedBy: {
@@ -108,18 +108,15 @@ const generalInfoSchema = new mongoose.Schema({
   },
   saleType: {
     type: String,
-    enum: ['For Sale', 'For Rent', 'Commercial'],
-    default: 'For Sale'
+    required: true
   },
   featuredPackage: {
     type: String,
-    enum: ['Basic', 'Premium', 'Gold'],
-    default: 'Basic'
+    required: true
   },
   ppdPackage: {
     type: String,
-    enum: ['Standard', 'Advanced', 'Premium'],
-    default: 'Standard'
+    required: true
   },
   photo: {
     type: String, // Store the path/url to the uploaded image
@@ -152,22 +149,43 @@ const locationInfoSchema = new mongoose.Schema({
     type: String
   },
   latitude: {
-    type: Number,
+    type: String,
     required: true
   },
   longitude: {
-    type: Number,
+    type: String,
     required: true
   }
 });
 
 
 const AddNewPropertySchema = new mongoose.Schema({
+    ppdId:{
+      type : String,
+      required : true
+    },
+    views:{
+      type : Number,
+      required : true
+    },
+    status:{
+      type : String,
+      required : true
+    },
+    daysLeft:{
+      type : String,
+      required : true
+    },
+    area : {
+      type : Number,
+      required : true
+    },
     basicInfo : basicInfoSchema,
-    propertyDetail : propertyDetailSchema,
+    propertyDetails : propertyDetailSchema,
     generalInfo: generalInfoSchema,
-    locationInfo:locationInfoSchema
+    locationInfo:locationInfoSchema,
+
 }) 
 
-const AddNewProperty = mongoose.model("AddNewProperty",AddNewPropertySchema)
-module.exports = AddNewProperty;
+const NewProperty = mongoose.model("AddNewProperty",AddNewPropertySchema)
+module.exports = NewProperty;

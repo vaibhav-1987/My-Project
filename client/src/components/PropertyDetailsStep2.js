@@ -4,7 +4,7 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
 
   const [propertyDetails, setPropertyDetails] = useState({
     length: "",
-    breath: "",
+    breadth: "",
     totalArea: "",
     areaUnit: "",
     noofBHK: "",
@@ -21,6 +21,7 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // console.log(name,value)
     setPropertyDetails({
       ...propertyDetails,
       [name]: value
@@ -169,17 +170,18 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
         </div>
 
         <div className="flex flex-col ml-10 mr-10 ">
-          {/* breath */}
+          {/* breadth */}
           <div className="flex flex-col">
             <label className="text-gray-500 my-1 text-lg font-semibold">
-              Breath
+              Breadth
             </label>
             <input
               className="mt-1 mb-4 pl-4 py-2 pr-56
               border border-solid border-gray-400 rounded-lg"
               type="number"
               placeholder="Example: 1000"
-              name="breath"
+              name="breadth"
+              value={propertyDetails.breadth}
               onChange={handleInputChange}
               required
             />
@@ -265,7 +267,7 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
             </select>
           </div>
 
-          {/* elecricity */}
+          {/* electricity */}
           <div className="flex flex-col">
             <label className="text-gray-500 my-1 text-lg font-semibold">
               Electricity
@@ -274,8 +276,9 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
               className="mt-1 mb-4 pl-4 py-2 pr-56 
               border border-solid border-gray-400 rounded-lg"
               type="text"
-              placeholder="Example: phase 3"
               name="electicity"
+              placeholder="Example: phase 3"
+              value={propertyDetails.electricity}
               onChange={handleInputChange}
               required
             />
