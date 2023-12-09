@@ -7,7 +7,7 @@ const BasicInfoStep = ({handleBasicInfo}) => {
     price: "",
     propertyAge: "",
     propertyDescription: "",
-    negotable: "",
+    negotiable: "",
     ownership: "",
     propertyApproved: "",
     bankLoan: ""
@@ -115,7 +115,7 @@ const BasicInfoStep = ({handleBasicInfo}) => {
               className="mt-1 mb-4 pl-4 py-3 pr-56 text-gray-500
             border border-solid border-gray-400 rounded-lg"
               name="negotiable"
-              value={basicInfo.negotable}
+              value={basicInfo.negotiable}
               onChange={handleInputChange}
               required
             >

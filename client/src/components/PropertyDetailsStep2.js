@@ -276,7 +276,7 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
               className="mt-1 mb-4 pl-4 py-2 pr-56 
               border border-solid border-gray-400 rounded-lg"
               type="text"
-              name="electicity"
+              name="electricity"
               placeholder="Example: phase 3"
               value={propertyDetails.electricity}
               onChange={handleInputChange}
