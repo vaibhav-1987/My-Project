@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-const BasicInfoStep = ({handleBasicInfo}) => {
+const BasicInfoStep = ({ handleBasicInfo }) => {
   const [basicInfo, setBasicInfo] = useState({
     propertyType: "",
     price: "",
@@ -18,7 +18,7 @@ const BasicInfoStep = ({handleBasicInfo}) => {
       ...basicInfo,
       [name]: value
     })
-     // Pass the updated basicInfo data to the parent component
+    // Pass the updated basicInfo data to the parent component
     handleBasicInfo({ ...basicInfo, [name]: value });
   }
   return (
@@ -109,7 +109,7 @@ const BasicInfoStep = ({handleBasicInfo}) => {
           {/* Negotiable */}
           <div className="flex flex-col">
             <label className="text-gray-500 my-1 text-lg font-semibold">
-            Negotable
+              Negotable
             </label>
             <select
               className="mt-1 mb-4 pl-4 py-3 pr-56 text-gray-500
@@ -183,7 +183,7 @@ const BasicInfoStep = ({handleBasicInfo}) => {
 
         </div>
       </div>
-      
+
     </div>
   )
 }

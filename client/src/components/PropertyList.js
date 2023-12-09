@@ -1,35 +1,10 @@
-// import { useEffect, useState , useContext } from "react";
 import PropertyCard from "./PropertyCard"
-// import UserContext from "./UserContext";
 import { ColorRing } from "react-loader-spinner";
 
 
-const PropertyList = ({propertyInfo}) => {
-  // const [propertyData, setPropertyData] = useState(null);
-  // const {loggedInUser} = useContext(UserContext);
-  // const fetchData = async () => {
-  //  try{ 
-  //     const res = await fetch("http://localhost:5050/api/v1/property/", {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'authorization': `bearer ${loggedInUser.token}`
-  //     }
-  //   });
-  //   // console.log(res)
-  //   const data = await res.json();
-  //   console.log(data)
-  //   setPropertyData(data.propertiesList)
-  //   // setPropertyInfo(data.propertiesList)
-  // }catch(err){
-  //   console.log(err)
-  // }
-  // }
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+const PropertyList = ({ propertyInfo }) => {
 
-  if(!propertyInfo) return <ColorRing/> ;
+  if (!propertyInfo) return <ColorRing />;
 
   return (
     <>

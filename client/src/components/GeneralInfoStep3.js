@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
-import {ColorRing} from "react-loader-spinner"
+import { ColorRing } from "react-loader-spinner"
+
 const GeneralInfoStep3 = ({ handleGeneralInfo }) => {
   const [generalInfo, setGeneralInfo] = useState({
     name: "",
@@ -11,8 +12,9 @@ const GeneralInfoStep3 = ({ handleGeneralInfo }) => {
     ppdPackage: "",
     photo: null
   })
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const cloudName = "di6m4nppw"
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setGeneralInfo({
@@ -24,43 +26,32 @@ const GeneralInfoStep3 = ({ handleGeneralInfo }) => {
       [name]: value
     })
   }
-  // const handleImageChange = (e) => {
-  //   const file = e.target.files[0]; // Get the uploaded file
-  //   setGeneralInfo({
-  //     ...generalInfo,
-  //     photo: file // Update the photo property with the file object
-  //   });
-  //   handleGeneralInfo({
-  //     ...generalInfo,
-  //     photo: file
-  //   })
-  // };
-  const uploadFile = async (image)=>{
+  const uploadFile = async (image) => {
     const formData = new FormData();
-    formData.append("file",image);
-    formData.append("upload_preset","images_preset");
-    try{
+    formData.append("file", image);
+    formData.append("upload_preset", "images_preset");
+    try {
       const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
-      const res = await axios.post(api,formData)
+      const res = await axios.post(api, formData)
       console.log(res)
       const { secure_url } = res.data;
       return secure_url
-    }catch(err){
+    } catch (err) {
       console.error(err)
     }
 
   }
-  const handleImage = async (e)=>{
+  const handleImage = async (e) => {
     setLoading(true)
     const imageFile = e.target.files[0];
     const imageUrl = await uploadFile(imageFile);
     setGeneralInfo({
       ...generalInfo,
-      photo : imageUrl
+      photo: imageUrl
     })
     handleGeneralInfo({
       ...generalInfo,
-      photo : imageUrl
+      photo: imageUrl
     })
 
     setLoading(false)
@@ -138,7 +129,8 @@ const GeneralInfoStep3 = ({ handleGeneralInfo }) => {
               required
             />
             {/* loading spinner */}
-             {loading && <ColorRing
+            {
+              loading && <ColorRing
                 visible={true}
                 height="80"
                 width="80"
@@ -146,7 +138,7 @@ const GeneralInfoStep3 = ({ handleGeneralInfo }) => {
                 wrapperStyle={{}}
                 wrapperClass="blocks-wrapper"
                 colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-            />}
+              />}
           </div>
 
         </div>

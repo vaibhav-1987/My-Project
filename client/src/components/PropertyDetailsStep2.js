@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
+const PropertyDetailsStep2 = ({ handlePropertyDetails }) => {
 
   const [propertyDetails, setPropertyDetails] = useState({
     length: "",
@@ -21,20 +21,19 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // console.log(name,value)
     setPropertyDetails({
       ...propertyDetails,
       [name]: value
     })
-   handlePropertyDetails({
-    ...propertyDetails,
-    [name]: value
+    handlePropertyDetails({
+      ...propertyDetails,
+      [name]: value
     })
   }
   return (
     <div>
       <div className="flex mt-5 ml-10 mr-20">
-        
+
         <div className="flec flex-col ml-5 mr-20 ">
           {/* length */}
           <div className="flex flex-col ">
@@ -286,7 +285,7 @@ const PropertyDetailsStep2 = ({handlePropertyDetails}) => {
         </div>
 
       </div>
-  </div>
+    </div>
   )
 }
 

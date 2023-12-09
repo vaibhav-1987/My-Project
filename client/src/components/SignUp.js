@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
     const [errorMessage, setErrorMessage] = useState(null)
     const [isSigninForm, setSigninForm] = useState(true)
-    const {loggedInUser ,setLoggedInUser} = useContext(UserContext)
+    const { loggedInUser, setLoggedInUser } = useContext(UserContext)
     const navigate = useNavigate();
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
@@ -25,14 +25,12 @@ const SignUp = () => {
             const confirmpassword = confirmPasswordRef.current.value
             if (!email || !password || !confirmpassword) { return }
             try {
-
                 const requestOptions = {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password, confirmpassword }),
                     redirect: 'follow'
                 };
-
                 const res = await fetch("http://localhost:5050/api/v1/users/register", requestOptions)
                 const data = await res.json();
                 setErrorMessage(data)
@@ -41,9 +39,6 @@ const SignUp = () => {
                     emailRef.current.value = '';
                     passwordRef.current.value = '';
                     confirmPasswordRef.current.value = '';
-                    // navigate("/")
-                    // setUserName("gowri")
-                    // console.log(loggedInUser)
                 }
             } catch (err) {
                 console.log("error", err)
@@ -55,14 +50,12 @@ const SignUp = () => {
             const password = passwordRef.current.value
             if (!email || !password) { return }
             try {
-
                 const requestOptions = {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email, password }),
-                    
-                };
 
+                };
                 const res = await fetch("http://localhost:5050/api/v1/users/login", requestOptions)
                 const data = await res.json();
                 setErrorMessage(data)
@@ -70,18 +63,18 @@ const SignUp = () => {
                 if (data.message.includes("success")) {
                     emailRef.current.value = '';
                     passwordRef.current.value = '';
-                    
+
                     const userData = {
-                        email : data?.user?.email,
-                        id : data?.user?._id,
-                        token : data?.token
+                        email: data?.user?.email,
+                        id: data?.user?._id,
+                        token: data?.token
                     }
                     console.log(userData)
                     setLoggedInUser(userData)
                     navigate("/")
                     // console.log(loggedInUser)
                 }
-                
+
             } catch (err) {
                 console.log("error", err)
             }
@@ -127,11 +120,11 @@ const SignUp = () => {
                         placeholder="confirm password"
                         ref={confirmPasswordRef}
                     />}
-                    {!errorMessage ? "" 
-                     : ( errorMessage?.status === "success"
-                        ? <p className="text-green-600 p-2 text-center ">{errorMessage.message}</p>
-                        : <p className="text-orange-600 p-2 text-center ">{errorMessage.message}</p>
-                      )
+                    {!errorMessage ? ""
+                        : (errorMessage?.status === "success"
+                            ? <p className="text-green-600 p-2 text-center ">{errorMessage.message}</p>
+                            : <p className="text-orange-600 p-2 text-center ">{errorMessage.message}</p>
+                        )
                     }
                     <button
                         className="mx-6 mt-8 mb-12 p-3 bg-blue-600
