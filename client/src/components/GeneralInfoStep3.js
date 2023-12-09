@@ -127,14 +127,13 @@ const GeneralInfoStep3 = ({ handleGeneralInfo }) => {
           {/* image upload */}
           <div className="flex flex-col">
             <label className="text-gray-500 my-1 text-lg font-semibold">
-              Image
+              Photo
             </label>
             <input
               className="mt-1 mb-4 pl-4 py-3 text-gray-500"
               type="file"
               accept="image/*"
               name="photo"
-              // onChange={handleImageChange}
               onChange={handleImage}
               required
             />

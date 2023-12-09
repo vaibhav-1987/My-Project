@@ -1,12 +1,11 @@
 import AddNewProperty from './components/AddNewProperty';
-import ListingPage from './components/ListingPage';
+import HomePage from './components/HomePage';
 import SignUp from './components/SignUp';
 import Body from './components/Body';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import {BrowserRouter as Router ,Routes,Route}from 'react-router-dom';
-import PropertyList from './components/PropertyList';
 import UserContext from './components/UserContext';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 
 
 
@@ -22,7 +21,7 @@ const App = () => {
       <Router>
         <Routes>
             <Route path='/' exact
-             element={<ProtectedRoutes><ListingPage/></ProtectedRoutes>}>
+             element={<ProtectedRoutes><HomePage/></ProtectedRoutes>}>
               <Route element ={<Body/>} path='/' exact/>
               <Route element ={<AddNewProperty/>} path='/add' />
             </Route>
@@ -32,32 +31,8 @@ const App = () => {
     </div>
   </UserContext.Provider>
   )
+
 }
 export default App;
 
-// const appRouter = createBrowserRouter([
-//     {
-//       path: "/login",
-//       element: <SignUp />
-//     },
-//     {
-//       path: "/list",
-//       element: <ListingPage />,
-//       children :[{
-//         path : "/list",
-//         element : <Body/>
-//       },{
-//         path:"/list/add",
-//         element : <AddNewProperty/>
-//       }]
-//     }
-// ])
-// function App() {
-//   return (
-//     <div >
-//      <RouterProvider router={appRouter}/>
-//     </div>
-//   );
-// }
 
-// export default App;

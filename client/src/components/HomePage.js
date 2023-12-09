@@ -1,14 +1,12 @@
 
 import Header from "./Header";
-import Body from "./Body";
 import SideBar from "./SideBar";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import AddNewProperty from "./AddNewProperty";
-import PropertyList from "./PropertyList";
+import { Outlet} from "react-router-dom";
 
 
 
-const ListingPage = ()=>{
+
+const HomePage = ()=>{
     return(
         <div className="">
             <Header/>
@@ -17,7 +15,7 @@ const ListingPage = ()=>{
         </div>
     )
 }
-export default ListingPage;
+export default HomePage;
 
 
 

@@ -34,6 +34,7 @@ router.post("/",async (req,res)=>{
     res.send("this is(Post) addNewProperty Page")
 })
 router.post("/add",async (req,res)=>{
+   try{
     const {basicInfo,propertyDetails,generalInfo,locationInfo} = req.body;
     const newProperty = new NewProperty ({
         ppdId : ppdId,
@@ -52,6 +53,12 @@ router.post("/add",async (req,res)=>{
         message : "success",
         newProperty
     })
+   }catch(err){
+    res.status(400).json({
+        status : "failure",
+        message : "error in adding data"
+    })
+   }
 })
 
 

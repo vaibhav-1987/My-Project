@@ -1,197 +1,35 @@
-import { useEffect, useState , useContext } from "react";
+// import { useEffect, useState , useContext } from "react";
 import PropertyCard from "./PropertyCard"
-import UserContext from "./UserContext";
-// Function to generate a random PPID
-function generateRandomPPID() {
-  return Math.floor(Math.random() * 1000);
-}
+// import UserContext from "./UserContext";
+import { ColorRing } from "react-loader-spinner";
 
-// Function to generate a random image URL (placeholder in this case)
-function generateRandomImageURL() {
-  // Replace this with a function that generates random image URLs
-  // For example, you can use placeholder services like Lorem Picsum or Unsplash
-  return 'https://via.placeholder.com/150'; // Placeholder URL
-}
 
-// Generating an array of objects with random values
-const arrayOfObjects = [
-  // {
-  //   // PPID: generateRandomPPID(),
-  //   PPID : Math.floor(Math.random() * 1000),
-  //   image: generateRandomImageURL(),
-  //   property: 'Property A',
-  //   contact: Math.floor(Math.random()*1000000000),
-  //   area: Math.floor(Math.random() * 1000),
-  //   views: Math.floor(Math.random() * 10000),
-  //   status: 'Active',
-  //   daysLeft: Math.floor(Math.random() * 30),
-  //   action: 'View'
-  // },
-  // {
-  //   // PPID: generateRandomPPID(),
-  //   PPID : Math.floor(Math.random() * 1000),
-  //   image: generateRandomImageURL(),
-  //   property: 'Property B',
-  //   contact: Math.floor(Math.random()*1000000000),
-  //   area: Math.floor(Math.random() * 1000),
-  //   views: Math.floor(Math.random() * 10000),
-  //   status: 'Inactive',
-  //   daysLeft: Math.floor(Math.random() * 30),
-  //   action: 'View'
-  // },
+const PropertyList = ({propertyInfo}) => {
+  // const [propertyData, setPropertyData] = useState(null);
+  // const {loggedInUser} = useContext(UserContext);
+  // const fetchData = async () => {
+  //  try{ 
+  //     const res = await fetch("http://localhost:5050/api/v1/property/", {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'authorization': `bearer ${loggedInUser.token}`
+  //     }
+  //   });
+  //   // console.log(res)
+  //   const data = await res.json();
+  //   console.log(data)
+  //   setPropertyData(data.propertiesList)
+  //   // setPropertyInfo(data.propertiesList)
+  // }catch(err){
+  //   console.log(err)
+  // }
+  // }
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
-  {
-    ppdId: Math.floor(Math.random() * 1000),
-    // PPID: generateRandomPPID(),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  },
-  {
-    // PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  }, ,
-  {
-    //   PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  }, ,
-  {
-    // PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View '
-  },
-  {
-    // PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property A',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Active',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  },
-  {
-    // PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  },
-
-  {
-    ppdId: Math.floor(Math.random() * 1000),
-    // PPID: generateRandomPPID(),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  }, ,
-  {
-    // PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  }, ,
-  {
-    //   PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View'
-  }, ,
-  {
-    // PPID: generateRandomPPID(),
-    ppdId: Math.floor(Math.random() * 1000),
-    image: generateRandomImageURL(),
-    property: 'Property B',
-    contact: Math.floor(Math.random() * 1000000000),
-    area: Math.floor(Math.random() * 1000),
-    views: Math.floor(Math.random() * 10000),
-    status: 'Inactive',
-    daysLeft: Math.floor(Math.random() * 30),
-    action: 'View '
-  }
-  // Add more objects following the same structure as needed
-];
-
-// fetch("http://localhost:5050/api/v1/property/")
-//    .then((res)=> res.json())
-//    .then((data)=>console.log(data))
-//    .catch((err)=>console.error(err))
-
-const PropertyList = () => {
-  const [propertyData, setPropertyData] = useState(arrayOfObjects);
-  const {loggedInUser} = useContext(UserContext);
-  const fetchData = async () => {
-   try{ const res = await fetch("http://localhost:5050/api/v1/property/", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'authorization': `bearer ${loggedInUser.token}`
-      }
-    });
-    // console.log(res)
-    const data = await res.json();
-    console.log(data)
-    setPropertyData(data.propertiesList)
-  }catch(err){
-    console.log(err)
-  }
-  }
-  useEffect(() => {
-    fetchData()
-  }, [])
-
+  if(!propertyInfo) return <ColorRing/> ;
 
   return (
     <>
@@ -209,11 +47,11 @@ const PropertyList = () => {
       </div>
       <div >
         {
-          propertyData.map((obj) => (
-            <PropertyCard key={obj.ppdId} obj={obj} />
+          propertyInfo && propertyInfo.map((obj) => (
+            <PropertyCard key={obj._id} obj={obj} />
           ))
         }
-        {/* <PropertyCard/> */}
+
       </div>
     </>
 

@@ -4,7 +4,10 @@ import PropertyDetailsStep2 from "./PropertyDetailsStep2"
 import GeneralInfoStep3 from "./GeneralInfoStep3"
 import LocationInfoStep4 from "./LocationInfoStep4"
 import UserContext from "./UserContext"
+import { ColorRing } from "react-loader-spinner";
+
 const AddNewProperty = () => {
+  const [loading , setLoading] = useState(false)
   const [formData, setFormData] = useState({
     basicInfo: {},
     propertyDetails: {},
@@ -47,6 +50,8 @@ const AddNewProperty = () => {
   };
 
   const handleFormSubmit = async () => {
+    setLoading(true) ;
+    {loading && <ColorRing/>}
     try {
       console.log(formData)
       // Make a POST request to your backend endpoint with the form data
@@ -63,11 +68,17 @@ const AddNewProperty = () => {
       );
         const result = await response.json();
         console.log(result)
+        if(result.message.includes("success")){
+          alert(" property data added successfully")
+        }else{
+          alert("please fill all the details properly")
+        }
    
     } catch (error) {
       console.error('Error:', error);
-      
+      alert("error  in adding data")
     }
+    setLoading(false)
   };
   return (
     <div className="ml-[22%] mt-[9%] absolute px-[2%] w-[78%]">
