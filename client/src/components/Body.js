@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom"
 import PropertyList from "./PropertyList"
-import { useEffect, useState , useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import UserContext from "./UserContext";
 
 const Body = () => {
- 
+
   const [propertyData, setPropertyData] = useState(null);
-  const [searchedProperties , setSearchedProperties] = useState(null)
+  const [searchedProperties, setSearchedProperties] = useState(null)
   const [serachText, setSearchText] = useState("");
   const { loggedInUser } = useContext(UserContext);
+  
+  useEffect(() => {
+    fetchData()
+  }, [])
+  
   const handleSearch = () => {
     if (serachText === "") {
       setSearchedProperties(propertyData)
@@ -18,32 +23,30 @@ const Body = () => {
         p.ppdId === serachText
       ))
       setSearchedProperties(filteredProperties)
-      // setSearchText("")
     }
   }
 
   const fetchData = async () => {
     try {
+
       const res = await fetch("http://localhost:5050/api/v1/property/", {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'authorization': `bearer ${loggedInUser.token}`
         }
-      });
-      // console.log(res)
+      })
+
       const data = await res.json();
-      console.log(data)
       setPropertyData(data.propertiesList)
       setSearchedProperties(data.propertiesList)
-      // setPropertyInfo(data.propertiesList)
+
     } catch (err) {
       console.log(err)
     }
   }
-  useEffect(() => {
-    fetchData()
-  }, [])
+ 
+
   return (
     <div className="ml-[21%] mt-[6%] absolute w-[79%] p-[2%] h-[85%] 
      bg-gray-50  bg-opacity-70">
@@ -76,4 +79,4 @@ const Body = () => {
   )
 }
 
-export default Body
+export default Body;

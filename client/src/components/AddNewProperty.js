@@ -7,7 +7,7 @@ import UserContext from "./UserContext"
 import { ColorRing } from "react-loader-spinner";
 
 const AddNewProperty = () => {
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     basicInfo: {},
     propertyDetails: {},
@@ -50,8 +50,8 @@ const AddNewProperty = () => {
   };
 
   const handleFormSubmit = async () => {
-    setLoading(true) ;
-    {loading && <ColorRing/>}
+    setLoading(true);
+    { loading && <ColorRing /> }
     try {
       console.log(formData)
       // Make a POST request to your backend endpoint with the form data
@@ -66,14 +66,14 @@ const AddNewProperty = () => {
           body: JSON.stringify(formData),
         }
       );
-        const result = await response.json();
-        console.log(result)
-        if(result.message.includes("success")){
-          alert(" property data added successfully")
-        }else{
-          alert("please fill all the details properly")
-        }
-   
+      const result = await response.json();
+      console.log(result)
+      if (result.message.includes("success")) {
+        alert(" property data added successfully")
+      } else {
+        alert("please fill all the details properly")
+      }
+
     } catch (error) {
       console.error('Error:', error);
       alert("error  in adding data")
@@ -173,7 +173,7 @@ const AddNewProperty = () => {
               className=" w-[200px] h-[60px] mx-4 my-2 px-10 py-4 bg-blue-700 text-white rounded-full"
               onClick={() => {
                 step === 4 ? handleFormSubmit() : setStep((step % 4) + 1);
-                console.log(formData)
+                // console.log(formData)
               }}
             >
               {step === 4 ? "Add property" : "Save & Continue"}
@@ -191,34 +191,4 @@ const AddNewProperty = () => {
   )
 }
 
-export default AddNewProperty
-
-{/* <div className=" relative flex justify-center">
-            <button
-              className=" mx-4 my-2 px-10 py-4  bg-blue-300 rounded-full "
-              onClick={() => {
-                (step == 1)
-                  ? setStep(1)
-                  : setStep((step) - 1)
-              }}
-            >
-              {step == 1 ? "Cancel" : "Previous"}
-            </button>
-            <button
-              className=" mx-4 my-2 px-10 py-4  bg-blue-700 text-white rounded-full"
-              onClick={() => {
-                step == 4
-                  ? (alert("property added successfully"))
-                  : setStep((step % 4) + 1)
-              }}
-            >
-              {step == 4 ? "add property" : "Save & Continue"}
-            </button>
-          </div> */}
-             //   // Handle successful response from the backend
-      //   alert("Property added successfully");
-      //   // You might want to reset the form or do other actions here
-      // } else {
-      //   // Handle errors if the request fails
-      //   throw new Error('Failed to add property');
-      // }
+export default AddNewProperty;

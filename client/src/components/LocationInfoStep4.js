@@ -47,6 +47,7 @@ const LocationInfoStep4 = ({handleLocationInfo}) => {
             />
           </div>
           {/* area */}
+          <div>
           <label className="text-gray-500 my-1 text-lg font-semibold">
             Area
           </label>
@@ -65,6 +66,7 @@ const LocationInfoStep4 = ({handleLocationInfo}) => {
             <option value="West">West</option>
 
           </select>
+          </div>
           {/* address */}
           <div className="flex flex-col">
             <label className="text-gray-500 my-1 text-lg font-semibold">

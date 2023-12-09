@@ -7,7 +7,7 @@ const UserContext = createContext({
 })
 
 export const extractNameFromEmail = (email) => {
-    // Logic to extract the name from the email (e.g., splitting the email string)
+    // Logic to extract the name from the email 
     const [username] = email.split('@');
     return username;
 };
